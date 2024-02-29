@@ -5,6 +5,7 @@
 
 import os
 import numpy as np
+import subprocess
 
 PATH = os.getcwd() + "/../DarkTridentGen/"
 NUM_DARK_SCALARS = 10_000
@@ -21,18 +22,24 @@ def test_path():
     else:
         return False
     
-def gen_mass_points():
+def gen_mass_points(dt_ratio, num_files):
     """
      * We want to generate files at sensible mass points.
      * But limits are effected by dt ratio
      * This is limited too the mass of an eta > 2 * m_chi
+     * dt_ratio = m_chi / m_A'
+     * so m_A'_max = m_chi / dt_ratio
+
 
     Returns:
-        _type_: _description_
+        list : generated mass points
     """
+    m_eta_meson = 0.547 # GeV (actually 0.547862, round slightly down to be safe)
+    m_chi_max = m_eta_meson / 2.0 # GeV, this is the max we can have for m_chi
+    m_A_max = m_chi_max / float(dt_ratio) # GeV, this is the max we can have for m_A'
+
     min_ma = 0.01 # GeV so 10 MeV
-    max_ma = 0.1 # GeV # FOR NOW - NEED TO MAKE THIS DYNAMIC !!!!!!!!!!!!!!!
-    mass_points = np.linspace(min_ma, max_ma, 10)
+    mass_points = np.linspace(min_ma, m_A_max, num_files)
 
     # round each mass point to 2 decimal places
     mass_points = [round(ma, 2) for ma in mass_points]
@@ -67,6 +74,9 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
             elif "dark_photon_mass" in line[0:15]:
                 new_line = "dark_photon_mass " + ma + "\n"
                 new_param_card += new_line
+            elif "root_file" == line[0:9]:
+                new_line = "root_file " + f"pi0_{chi_type}_ma_{ma}_dt_{dt_ratio}.root\n"
+                new_param_card += new_line
             else:
                 new_param_card += line
     
@@ -77,6 +87,14 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
     
     return param_card_id
 
+def run_command(command):
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+    output, error = process.communicate()
+
+    if error:
+        print(f"Error: {error}")
+    else:
+        print(output)
 
 def main(dt_ratio, num_files, chi_type="scalar"):
 
@@ -88,7 +106,7 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         return -1
     
     # generate the mass points
-    mass_points = gen_mass_points()
+    mass_points = gen_mass_points(dt_ratio, num_files)
     print(f"Generated mass points: {mass_points}")
 
     for ma in mass_points:
@@ -97,7 +115,7 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         # m_chi = dt_ratio * m_A'
 
         if dt_ratio == "0.33": # cannot get 1/3 exactly obviously
-            dm_mass = str(3 * float(ma))
+            dm_mass = str(float(ma) / 3.0)
         else:
             # dt_ratio = 2.0 or 0.6
             dm_mass = str(float(ma) / float(dt_ratio))
@@ -107,7 +125,10 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         print(f"Generated parameter card: {param_card_id}")
 
         # run the DarkTridentGen
-        #os.system(f"cd {PATH}; ./DarkTridentGen {param_card_id}")
+        print(f"{PATH}BdNMC/bin/BDNMC {param_card_id}")
+        run_command(f".{PATH}BdNMC/bin/BDNMC {param_card_id}")
+
+        # copy files to data directory?
     
 
 
@@ -115,4 +136,4 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 1, "scalar")
+    main("0.33", 10, "scalar")
