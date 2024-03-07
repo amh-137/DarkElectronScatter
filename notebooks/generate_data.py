@@ -146,7 +146,7 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         print(f"Generated parameter card: {param_card_id}")
 
         # run the DarkTridentGen
-        #run_shell_script(chi_type, ma, dt_ratio)
+        run_shell_script(chi_type, ma, dt_ratio)
         
 
     
