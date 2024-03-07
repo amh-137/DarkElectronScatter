@@ -39,11 +39,24 @@ def gen_mass_points(dt_ratio, num_files):
     m_A_max = m_chi_max / float(dt_ratio) # GeV, this is the max we can have for m_A'
 
     min_ma = 0.01 # GeV so 10 MeV
-    mass_points = np.linspace(min_ma, m_A_max, num_files)
+    mass_points = np.linspace(0.01, 0.1, 10)
+    mass_points = mass_points.tolist()
+    mass_point = 0.2
+    while mass_point < m_A_max:
+        mass_points.append(mass_point)
+        mass_point += 0.1
+    mass_point = 0.11
+    while len(mass_points) < num_files and mass_point < m_A_max:
+        mass_points.append(mass_point)
+        mass_point += 0.01
 
     # round each mass point to 2 decimal places
+    
     mass_points = [round(ma, 2) for ma in mass_points]
-
+    
+    #order numbers in ascending order
+    mass_points.sort()
+    
     return mass_points
 
 def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
@@ -88,7 +101,7 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
     return param_card_id
 
 def run_shell_script(script_path):
-    process = subprocess.Popen(['/bin/bash', script_path], stdout=subprocess.PIPE)
+    process = subprocess.Popen(['ls', script_path], stdout=subprocess.PIPE)
     output, error = process.communicate()
 
     if error:
@@ -131,9 +144,11 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         run_shell_script(f".{PATH}BdNMC/bin/BDNMC {param_card_id}")
 
         # copy files to data directory?
+        
+
     
-
-
+current_path = os.getcwd()
+run_shell_script(current_path)
 
 if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
