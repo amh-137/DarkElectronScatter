@@ -6,6 +6,7 @@
 import os
 import numpy as np
 import subprocess
+import sys
 
 PATH = os.getcwd() + "/../DarkTridentGen/"
 NUM_DARK_SCALARS = 10_000
@@ -78,8 +79,8 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
                 # skip comments but include them in the new file
                 # (there may be the word "run" in comments?)
                 new_param_card += line
-            elif "run " == line[0:4]: # want it at the start of the line
-                new_line = "run " + str(NUM_DARK_SCALARS) + "\n"
+            elif "samplesize" in line[0:15]: 
+                new_line = "samplesize " + str(NUM_DARK_SCALARS) + "\n"
                 new_param_card += new_line
             elif "dark_matter_mass" in line[0:16]:
                 new_line = "dark_matter_mass " + dm_mass + "\n"
@@ -151,4 +152,4 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 10, "scalar") # move to kwargs?
+    main("0.33", 15, "scalar") # move to kwargs?
