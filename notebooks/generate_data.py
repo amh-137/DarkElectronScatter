@@ -85,11 +85,14 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
             elif "dark_matter_mass" in line[0:16]:
                 new_line = "dark_matter_mass " + dm_mass + "\n"
                 new_param_card += new_line
-            elif "dark_photon_mass" in line[0:15]:
-                new_line = "dark_photon_mass " + ma + "\n"
+            elif "dark_photon_mass" in line[0:20]:
+                new_line = "dark_photon_mass " + str(ma) + "\n"
                 new_param_card += new_line
             elif "root_file" == line[0:9]:
                 new_line = "root_file " + f"{os.getcwd()}/data/root/BdNMC/{chi_type}/pi0_{chi_type}_ma_{ma}_dt_{dt_ratio}.root\n"
+                new_param_card += new_line
+            elif "decay_type" in line[0:12]:
+                new_line = "decay_type " + chi_type + "\n"
                 new_param_card += new_line
             else:
                 new_param_card += line
@@ -143,7 +146,7 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         print(f"Generated parameter card: {param_card_id}")
 
         # run the DarkTridentGen
-        run_shell_script(chi_type, ma, dt_ratio)
+        #run_shell_script(chi_type, ma, dt_ratio)
         
 
     
