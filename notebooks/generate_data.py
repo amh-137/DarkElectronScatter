@@ -87,14 +87,16 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
     
     return param_card_id
 
-def run_command(command):
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+def run_shell_script(script_path):
+    process = subprocess.Popen(['/bin/bash', script_path], stdout=subprocess.PIPE)
     output, error = process.communicate()
 
     if error:
         print(f"Error: {error}")
     else:
         print(output)
+
+
 
 def main(dt_ratio, num_files, chi_type="scalar"):
 
@@ -126,7 +128,7 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 
         # run the DarkTridentGen
         print(f"{PATH}BdNMC/bin/BDNMC {param_card_id}")
-        run_command(f".{PATH}BdNMC/bin/BDNMC {param_card_id}")
+        run_shell_script(f".{PATH}BdNMC/bin/BDNMC {param_card_id}")
 
         # copy files to data directory?
     
@@ -136,4 +138,4 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 10, "scalar")
+    main("0.33", 10, "scalar") # move to kwargs?
