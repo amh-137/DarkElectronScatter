@@ -43,7 +43,7 @@ def gen_mass_points(dt_ratio, num_files):
     mass_points = np.linspace(0.01, 0.1, 10)
     mass_points = mass_points.tolist()
     mass_point = 0.2
-    while mass_point < m_A_max:
+    while mass_point < m_A_max and len(mass_points) < num_files:
         mass_points.append(mass_point)
         mass_point += 0.1
     mass_point = 0.11
