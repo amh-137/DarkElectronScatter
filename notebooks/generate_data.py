@@ -101,7 +101,7 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
     return param_card_id
 
 def run_shell_script(script_path):
-    process = subprocess.Popen(['ls', script_path], stdout=subprocess.PIPE)
+    process = subprocess.Popen([script_path+"/BdNMC/bin/BDNMC","../DarkTridentGen/BdNMC/parameter_fermion_test_pi0.dat"], stdout=subprocess.PIPE)
     output, error = process.communicate()
 
     if error:
@@ -148,9 +148,9 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 
     
 current_path = os.getcwd()
-run_shell_script(current_path)
+run_shell_script(current_path+"/../DarkTridentGen/")
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 10, "scalar") # move to kwargs?
+    main("0.33", 10, "scalar") # move to kwargs?"""
