@@ -2,6 +2,7 @@
 Analysis of the Monte Carlo Generated Data for Dark Matter - Electron Scattering at MicroBooNE
 
 # Run
+In folder DarkElectronScatter:
 ```
 $ python3 -m venv venv
 $ source venv/bin/activate
