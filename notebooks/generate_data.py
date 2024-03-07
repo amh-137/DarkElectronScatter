@@ -88,7 +88,7 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
                 new_line = "dark_photon_mass " + ma + "\n"
                 new_param_card += new_line
             elif "root_file" == line[0:9]:
-                new_line = "root_file " + f"pi0_{chi_type}_ma_{ma}_dt_{dt_ratio}.root\n"
+                new_line = "root_file " + f"{os.getcwd()}/data/root/BdNMC/{chi_type}/pi0_{chi_type}_ma_{ma}_dt_{dt_ratio}.root\n"
                 new_param_card += new_line
             else:
                 new_param_card += line
@@ -100,8 +100,10 @@ def generate_paramater_card(dt_ratio, ma, chi_type, dm_mass):
     
     return param_card_id
 
-def run_shell_script(script_path):
-    process = subprocess.Popen([script_path+"/BdNMC/bin/BDNMC","../DarkTridentGen/BdNMC/parameter_fermion_test_pi0.dat"], stdout=subprocess.PIPE)
+
+
+def run_shell_script(chi_type, ma, dt_ratio):
+    process = subprocess.Popen([PATH+"/BdNMC/bin/BDNMC", f"/parameter_cards/parameter_pi0_{chi_type}_ma_{ma}_dt_{dt_ratio}.dat"])
     output, error = process.communicate()
 
     if error:
@@ -140,17 +142,13 @@ def main(dt_ratio, num_files, chi_type="scalar"):
         print(f"Generated parameter card: {param_card_id}")
 
         # run the DarkTridentGen
-        print(f"{PATH}BdNMC/bin/BDNMC {param_card_id}")
-        run_shell_script(f".{PATH}BdNMC/bin/BDNMC {param_card_id}")
-
-        # copy files to data directory?
+        run_shell_script(chi_type, ma, dt_ratio)
         
 
     
-current_path = os.getcwd()
-run_shell_script(current_path+"/../DarkTridentGen/")
 
-"""if __name__ == "__main__":
+
+if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 10, "scalar") # move to kwargs?"""
+    main("0.33", 10, "scalar") # move to kwargs?
