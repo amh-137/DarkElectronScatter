@@ -19,3 +19,6 @@ venv.bak/
 data/
 parameter_cards/
 base/
+
+# plots
+plots/
