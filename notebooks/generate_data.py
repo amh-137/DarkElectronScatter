@@ -155,4 +155,4 @@ def main(dt_ratio, num_files, chi_type="scalar"):
 if __name__ == "__main__":
     print("Warning: Usage: python3 generate_data.py dt_ratio num_files chi_type")
     #main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main("0.33", 15, "scalar") # move to kwargs?
+    main("0.6", 15, "scalar") # move to kwargs?
