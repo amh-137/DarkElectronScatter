@@ -2,6 +2,8 @@
 
 readarray -t jobs < "../Noether/card_list_fermion_0.33.txt"
 
+mkdir -p condor_out
+
 # Define the script name
 
 i=0
@@ -26,7 +28,7 @@ for index in "${!jobs[@]}"; do
     echo "error       = condor_out/${script}.err" >> "$submit_file"
     echo "log         = condor_out/${script}.log" >> "$submit_file"
     echo "queue" >> "$submit_file"    # Submit the job
-    #condor_submit "$submit_file"
+    condor_submit "$submit_file"
     echo "Job submitted with dat file: $job"
     i=$((i + 1))
 done
