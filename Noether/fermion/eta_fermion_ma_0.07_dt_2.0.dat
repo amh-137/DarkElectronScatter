@@ -75,7 +75,7 @@ summary_file bdnmc_summary.dat
 # output_mode summary
 
 # ROOT output 
-root_file /gluster/data/microboone/electron_scatter_dani/fermion/pi0_fermion_ma_0.07_dt_2.0.root
+root_file /gluster/data/microboone/electron_scatter_dani/fermion/eta_fermion_ma_0.07_dt_2.0.root
 output_mode dm_dist_root
 
 

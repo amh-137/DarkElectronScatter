@@ -75,7 +75,7 @@ summary_file bdnmc_summary.dat
 # output_mode summary
 
 # ROOT output 
-root_file /gluster/data/microboone/electron_scatter_dani/scalar/pi0_scalar_ma_0.01_dt_0.33.root
+root_file /gluster/data/microboone/electron_scatter_dani/scalar/eta_scalar_ma_0.01_dt_0.33.root
 output_mode dm_dist_root
 
 
