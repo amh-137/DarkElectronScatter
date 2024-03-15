@@ -22,3 +22,7 @@ base/
 
 # plots
 plots/
+
+
+# condor out
+condor/condor_out

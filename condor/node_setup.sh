@@ -26,10 +26,10 @@ echo
 
 
 # Get the parameter cards
-cd ~/repo/parameter_cards/
+cd ~/repo/DarkElectronScatter/Noether/
 cp -r scalar $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 cp -r fermion $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
-cd $_CONDON_SCRATCH_DIR/tmp/DarkTridentGen
+cd $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 
 echo
 echo "!!!!====================!!!!"
