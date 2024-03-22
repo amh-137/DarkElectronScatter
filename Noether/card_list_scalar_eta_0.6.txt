@@ -1,0 +1,13 @@
+scalar/eta_scalar_ma_0.01_dt_0.6.dat
+scalar/eta_scalar_ma_0.02_dt_0.6.dat
+scalar/eta_scalar_ma_0.03_dt_0.6.dat
+scalar/eta_scalar_ma_0.04_dt_0.6.dat
+scalar/eta_scalar_ma_0.05_dt_0.6.dat
+scalar/eta_scalar_ma_0.06_dt_0.6.dat
+scalar/eta_scalar_ma_0.07_dt_0.6.dat
+scalar/eta_scalar_ma_0.08_dt_0.6.dat
+scalar/eta_scalar_ma_0.09_dt_0.6.dat
+scalar/eta_scalar_ma_0.1_dt_0.6.dat
+scalar/eta_scalar_ma_0.2_dt_0.6.dat
+scalar/eta_scalar_ma_0.3_dt_0.6.dat
+scalar/eta_scalar_ma_0.4_dt_0.6.dat
