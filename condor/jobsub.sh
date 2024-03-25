@@ -1,6 +1,6 @@
 #!/bin/bash# Define list of arguments for the job
 
-readarray -t jobs < "../Noether/card_list_fermion_0.33.txt"
+readarray -t jobs < "../Noether/card_list_fermion_pi0_2.0.txt"
 
 mkdir -p condor_out
 
@@ -18,11 +18,10 @@ for index in "${!jobs[@]}"; do
     echo $extracted_str
     script="node${extracted_str}" # Loop through each index in the jobs array
 
-    # Get the argument corresponding to the current index
-    job="${jobs[i]}"    # Generate submit file for each job
+    # Generate submit file for each job
     submit_file="${script}.sub"
     echo "executable     = node_setup.sh" > "$submit_file"
-    echo "arguments      = $job" >> "$submit_file"
+    echo "arguments      = ${job}" >> "$submit_file"
     echo "universe       = vanilla" >> "$submit_file"
     echo "output         = condor_out/${script}.out" >> "$submit_file"
     echo "error          = condor_out/${script}.err" >> "$submit_file"
