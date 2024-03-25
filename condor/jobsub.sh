@@ -1,6 +1,6 @@
 #!/bin/bash# Define list of arguments for the job
 
-readarray -t jobs < "../Noether/card_list_fermion_pi0_2.0.txt"
+readarray -t jobs < "../Noether/card_list_scalar_eta_2.0.txt"
 
 mkdir -p condor_out
 
@@ -8,14 +8,12 @@ mkdir -p condor_out
 
 i=0
 for index in "${!jobs[@]}"; do
+    job=${jobs[$index]}
     extracted_str=$(echo "$job" | tr "/" "_")
-    #extracted_str=$(echo "$extracted_str" | tr "fermion/" "_")
-    #extracted_str=$(echo "$extracted_str" | tr ".dat" "_")
-
     extracted_str=$(echo "${extracted_str/scalar/}")
     extracted_str=$(echo "${extracted_str/fermion/}")
-    extracted_str=$(echo "${extracted_str/.dat/}")
-    echo $extracted_str
+    extracted_str=$(echo "${extracted_str/.dat/}")  
+    #echo $extracted_str
     script="node${extracted_str}" # Loop through each index in the jobs array
 
     # Generate submit file for each job
@@ -29,7 +27,7 @@ for index in "${!jobs[@]}"; do
     echo "request_memory = 1 GB" >> "$submit_file"
     echo "queue" >> "$submit_file"    # Submit the job
     condor_submit "$submit_file"
-    echo "Job submitted with dat file: $job"
+    echo "Job submitted with dat file: ${job}"
     i=$((i + 1))
 done
 
