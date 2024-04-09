@@ -26,3 +26,7 @@ plots/
 
 # condor out
 condor/condor_out
+
+
+# pycache
+__pycache__/
