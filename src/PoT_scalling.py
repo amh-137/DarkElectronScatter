@@ -15,7 +15,7 @@ def calculate_pot(POT_g4numi : float, ntrials : float, Nm : float, BR : float, o
     return (POT_g4numi * ntrials) / (Nm * BR * max(omega_int))
 
 
-def pot_scale(number_of_events : float, PoT : float, pot_g4numi : float) -> float:
+def pot_scale(number_of_events : float, PoT : float, pot_run1_microboone : float) -> float:
     """PoT scale the number of electrons scattered
 
     Args:
@@ -26,4 +26,4 @@ def pot_scale(number_of_events : float, PoT : float, pot_g4numi : float) -> floa
     Returns:
         float: pot scaled number of events
     """
-    return number_of_events * (pot_g4numi / PoT)
+    return number_of_events * (pot_run1_microboone / PoT)
