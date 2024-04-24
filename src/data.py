@@ -2,7 +2,17 @@ import uproot3 as up3
 import pandas as pd
 
 
-def load_root_file(fname: str, path: str, vars: list, chunk_size=10_000, structure="vertex_tree") -> pd.DataFrame:
+def identity_func(df: pd.DataFrame) -> pd.DataFrame:
+    """Identity function. Returns the dataframe as is.
+    Args:
+        df (pd.DataFrame): Input dataframe
+
+    Returns:
+        pd.DataFrame: Output dataframe
+    """
+    return df
+
+def load_root_file(fname: str, path: str, vars: list, cut_function=identity_func, chunk_size=10_000, structure="vertex_tree") -> pd.DataFrame:
     """Performant loading of a root file into a pandas dataframe. Loads by chunks of size chunk_size.
     Args:
         fname (str): filename
@@ -20,7 +30,7 @@ def load_root_file(fname: str, path: str, vars: list, chunk_size=10_000, structu
     elif structure == "singlephotonana":
         root_data = up3.open(path+fname)["singlephotonana"]["vertex_tree"]
     else:
-        root_data = up3.open(path+fname)
+        root_data = up3.open(path+fname)[structure]
 
     df = pd.DataFrame(columns=vars)
 
@@ -31,6 +41,9 @@ def load_root_file(fname: str, path: str, vars: list, chunk_size=10_000, structu
         # make the columns strings
         df_temp.columns = df_temp.columns.map(lambda x: x.decode('utf-8'))
         df_temp = df_temp[vars]
+
+        # make cuts
+        df_temp = cut_function(df_temp)
 
         # append cleaned data to our df
         df = pd.concat((df, df_temp))
