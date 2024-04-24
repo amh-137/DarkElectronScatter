@@ -46,6 +46,7 @@ def load_root_file(fname: str, path: str, vars: list, cut_function=identity_func
 
         # make cuts
         df_temp = cut_function(df_temp)
+        df_temp = clean_data(df_temp)
         df_temp = add_cos_theta_col(df_temp)
 
         # append cleaned data to our df
@@ -67,4 +68,22 @@ def add_cos_theta_col(df, v_numi=np.array([0.462372, 0.0488541, 0.885339])):
         [df.reco_shower_dirx, df.reco_shower_diry, df.reco_shower_dirz])
 
     df["cos_theta_numi"] = np.dot(v_shwr.T, v_numi)
+    return df
+
+
+
+def clean_data(df):
+    """Sum Energy of showers, take max of other variables
+
+    Args:
+        df (pandas.dataframe): the df you want to clean
+
+    Returns:
+        pandas.dataframe: cleaned df
+    """
+
+    df["reco_shower_energy_max"] = df["reco_shower_energy_max"].apply(lambda x: [
+                                                                      sum(x)])
+    df = df.applymap(lambda x: x[0] if (isinstance(
+        x, np.ndarray) or isinstance(x, list)) else x)
     return df
