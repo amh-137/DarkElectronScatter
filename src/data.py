@@ -84,6 +84,6 @@ def clean_data(df):
 
     df["reco_shower_energy_max"] = df["reco_shower_energy_max"].apply(lambda x: [
                                                                       sum(x)])
-    df = df.applymap(lambda x: x[0] if (isinstance(
+    df = df.map(lambda x: x[0] if (isinstance(
         x, np.ndarray) or isinstance(x, list)) else x)
     return df
