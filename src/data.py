@@ -1,5 +1,6 @@
 import uproot3 as up3
 import pandas as pd
+import numpy as np
 
 
 def identity_func(df: pd.DataFrame) -> pd.DataFrame:
@@ -19,7 +20,8 @@ def load_root_file(fname: str, path: str, vars: list, cut_function=identity_func
         path (str): path to file
         vars (list): variables you want as columns in the dataframe
         chunk_size (int, optional): Size of chunks that are loaded at a time. Defaults to 10_000.
-        structure (str, optional): is root data under ["vertex_tree"] or ["singlephotonana"]["vertex_tree"]. Defaults to "vertex_tree".
+        cut_function (function, optional): Function that takes a dataframe and applies cuts. Must return a dataframe. Defaults to identity_func that does nothing.
+        structure (str, optional): is root data under ["vertex_tree"] or ["singlephotonana"]["vertex_tree"]. Defaults to "vertex_tree". Also allows ["vertex_tree;x"] if specified.
 
     Returns:
         pd.DataFrame: Cleaned data with selection cuts applied.
@@ -44,7 +46,25 @@ def load_root_file(fname: str, path: str, vars: list, cut_function=identity_func
 
         # make cuts
         df_temp = cut_function(df_temp)
+        df_temp = add_cos_theta_col(df_temp)
 
         # append cleaned data to our df
         df = pd.concat((df, df_temp))
     return df.infer_objects()
+
+
+def add_cos_theta_col(df, v_numi=np.array([0.462372, 0.0488541, 0.885339])):
+    """Add a column with cos(theta) of the shower with respect to the neutrino beam direction
+
+    Args:
+        df (pandas.dataframe): df
+        v_numi (np.array, len=3, optional): The vector from numi target to uboone detector. Defaults to np.array([0.462372, 0.0488541, 0.885339]).
+
+    Returns:
+        pandas.dataframe: return df with new column
+    """
+    v_shwr = np.array(
+        [df.reco_shower_dirx, df.reco_shower_diry, df.reco_shower_dirz])
+
+    df["cos_theta_numi"] = np.dot(v_shwr.T, v_numi)
+    return df
