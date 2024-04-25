@@ -39,6 +39,7 @@ production_distribution particle_list
 particle_list_file ../../../neutral_meson_flux/pi0s.dat
 particle_list_position true
 particle_list_weight true
+meson_per_pi0 1
 
 ############################
 #END OF PRODUCTION CHANNELS#
