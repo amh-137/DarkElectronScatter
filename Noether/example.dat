@@ -11,8 +11,8 @@ run 1000
 
 #Model Parameters
 epsilon 1e-3
-dark_matter_mass 0.013333333333333332
-dark_photon_mass 0.04
+dark_matter_mass 0.023333333333333334
+dark_photon_mass 0.07
 alpha_D 0.1
 decay_type scalar
 
@@ -39,8 +39,6 @@ production_distribution particle_list
 particle_list_file ../../../neutral_meson_flux/pi0s.dat
 particle_list_position true
 particle_list_weight true
-meson_per_pi0 1
-
 
 ############################
 #END OF PRODUCTION CHANNELS#
@@ -77,7 +75,7 @@ summary_file bdnmc_summary.dat
 # output_mode summary
 
 # ROOT output 
-root_file /gluster/data/microboone/electron_scatter/scalar/pi0_scalar_ma_0.04_dt_0.33.root
+root_file /gluster/data/microboone/electron_scatter/scalar/pi0_scalar_ma_0.07_dt_0.33.root
 output_mode dm_dist_root
 
 
