@@ -12,3 +12,16 @@ def rotate_to_microboone(v : np.array) -> np.array:
 def translate_to_microboone(v : np.array):
     det_centre = np.array([55.02, 72.59,  672.70])
     return v + det_centre
+
+def add_cos_theta_signal(df):
+    px, py, pz = df["electron_px"], df["electron_py"], df["electron_pz"]
+    px, py, pz = rotate_to_microboone(np.array([px, py, pz]))
+    # get the direction vector
+    v = np.array([px, py, pz])
+    # normalize
+    v = v / np.linalg.norm(v, axis=0)
+
+    v_numi=np.array([0.462372, 0.0488541, 0.885339])
+    v_shwr = np.array([v[0], v[1], v[2]])
+    df["cos_theta_numi"] = np.dot(v_shwr.T, v_numi)
+    return df
