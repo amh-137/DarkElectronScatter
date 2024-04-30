@@ -30,6 +30,7 @@ cd ~/repo/DarkElectronScatter/Noether/
 cp -r scalar $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 cp -r fermion $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 cp -r signal_out_test $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
+cp -r fixed_Mchi $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 cd $_CONDOR_SCRATCH_DIR/tmp/DarkTridentGen
 
 echo
