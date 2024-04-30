@@ -1,0 +1,14 @@
+fixed_Mchi/scalar/eta_scalar_ma_0.01_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.02_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.03_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.04_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.05_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.06_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.07_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.08_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.09_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.1_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.2_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.3_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.4_mchi_0.001.dat
+fixed_Mchi/scalar/eta_scalar_ma_0.5_mchi_0.001.dat
