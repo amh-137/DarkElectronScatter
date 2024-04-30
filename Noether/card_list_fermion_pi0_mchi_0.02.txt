@@ -1,7 +1,6 @@
 fixed_Mchi/fermion/pi0_fermion_ma_0.01_mchi_0.02.dat
 fixed_Mchi/fermion/pi0_fermion_ma_0.02_mchi_0.02.dat
 fixed_Mchi/fermion/pi0_fermion_ma_0.03_mchi_0.02.dat
-fixed_Mchi/fermion/pi0_fermion_ma_0.04_mchi_0.02.dat
 fixed_Mchi/fermion/pi0_fermion_ma_0.05_mchi_0.02.dat
 fixed_Mchi/fermion/pi0_fermion_ma_0.06_mchi_0.02.dat
 fixed_Mchi/fermion/pi0_fermion_ma_0.07_mchi_0.02.dat

@@ -5,7 +5,6 @@ fixed_Mchi/scalar/eta_scalar_ma_0.04_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.05_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.06_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.07_mchi_0.04.dat
-fixed_Mchi/scalar/eta_scalar_ma_0.08_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.09_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.1_mchi_0.04.dat
 fixed_Mchi/scalar/eta_scalar_ma_0.2_mchi_0.04.dat
