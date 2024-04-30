@@ -4,3 +4,4 @@ matplotlib
 uproot3
 pandas
 pyhf
+uproot
