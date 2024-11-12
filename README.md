@@ -14,6 +14,6 @@ $ cd ~ && mkdir repo/pure && cd repo/pure
 $ git clone https://github.com/lmlepin9/DarkTridentGen.git && cd DarkTridentGen
 $ git swtich ElectronScatter
 $ cd ~/repo
-$ git clone https://github.com/SuchAgoodDoge/DarkElectronScatter.git && cd DarkElectronScatter/condor
+$ git clone https://github.com/amh-137/DarkElectronScatter.git && cd DarkElectronScatter/condor
 $ source jobsub.sh
 ```
